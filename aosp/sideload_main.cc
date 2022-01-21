@@ -74,7 +74,7 @@ class SideloadDaemonState : public DaemonStateInterface,
       // Split the progress bar in two parts for the two stages DOWNLOADING and
       // FINALIZING.
       ReportStatus(base::StringPrintf("ui_print ========================"));
-      ReportStatus(base::StringPrintf("ui_print Installing PixelDust ROM"));
+      ReportStatus(base::StringPrintf("ui_print  Staging the files..."));
       ReportStatus(base::StringPrintf("ui_print ========================"));
       ReportStatus(base::StringPrintf(
           "ui_print Step %d/3", status == UpdateStatus::DOWNLOADING ? 1 : 2));
@@ -84,10 +84,29 @@ class SideloadDaemonState : public DaemonStateInterface,
     if (status_ != status && (status == UpdateStatus::VERIFYING || status == UpdateStatus::FINALIZING)) {
       // Split the progress bar in two parts for the two stages DOWNLOADING and
       // FINALIZING.
-      ReportStatus(base::StringPrintf("ui_print ======================="));
-      ReportStatus(base::StringPrintf("ui_print Finalizing..."));
-      ReportStatus(base::StringPrintf("ui_print ======================="));
-       ReportStatus(base::StringPrintf(
+      ReportStatus(base::StringPrintf("ui_print "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print  Thank you for flashing PixelDust CAF "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print "));
+      ReportStatus(base::StringPrintf("ui_print    __________.__              .__   "));
+      ReportStatus(base::StringPrintf("ui_print    \\______   \\__|__  ___ ____ |  |  "));
+      ReportStatus(base::StringPrintf("ui_print     |     ___/  \\  \\/  /\\/ __ \\|  |  "));
+      ReportStatus(base::StringPrintf("ui_print     |    |   |  |>    <\\  ___/|  |__"));
+      ReportStatus(base::StringPrintf("ui_print     |____|   |__/__/\\_ \\\\___  >____/"));
+      ReportStatus(base::StringPrintf("ui_print                       \\/    \\/      "));
+      ReportStatus(base::StringPrintf("ui_print    ________                  __     "));
+      ReportStatus(base::StringPrintf("ui_print    \\______ \\  __ __  _______/  |_   "));
+      ReportStatus(base::StringPrintf("ui_print     |    |  \\|  |  \\/  ___/\\   __\\  "));
+      ReportStatus(base::StringPrintf("ui_print     |    `   \\  |  /\\___ \\  |  |    "));
+      ReportStatus(base::StringPrintf("ui_print    /_______  /____//____  > |__|    "));
+      ReportStatus(base::StringPrintf("ui_print            \\/           \\/          "));
+      ReportStatus(base::StringPrintf("ui_print "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print SALTEDCARAMEL BASED ON ANDROID 12.0.0 "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print "));
+      ReportStatus(base::StringPrintf(
            "ui_print Step %d/3", status == UpdateStatus::VERIFYING ? 2 : 3));
       ReportStatus(base::StringPrintf("progress 0.6 0"));
      }
