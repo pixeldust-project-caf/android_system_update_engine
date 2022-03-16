@@ -105,7 +105,7 @@ class SideloadDaemonState : public DaemonStateInterface,
       ReportStatus(base::StringPrintf("ui_print .          \\/           \\/          "));
       ReportStatus(base::StringPrintf("ui_print ."));
       ReportStatus(base::StringPrintf("ui_print ======================================"));
-      ReportStatus(base::StringPrintf("ui_print SALTEDCARAMEL BASED ON ANDROID 12.0.0 "));
+      ReportStatus(base::StringPrintf("ui_print SALTEDCARAMEL BASED ON ANDROID 12.1.0 "));
       ReportStatus(base::StringPrintf("ui_print ======================================"));
       ReportStatus(base::StringPrintf("ui_print "));
     }
