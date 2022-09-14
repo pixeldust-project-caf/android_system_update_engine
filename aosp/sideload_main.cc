@@ -69,17 +69,47 @@ class SideloadDaemonState : public DaemonStateInterface,
       const UpdateEngineStatus& update_engine_status) override {
     UpdateStatus status = update_engine_status.status;
     double progress = update_engine_status.progress;
-    if (status_ != status && (status == UpdateStatus::DOWNLOADING ||
-                              status == UpdateStatus::FINALIZING)) {
-      // Split the progress bar in two parts for the two stages DOWNLOADING and
-      // FINALIZING.
+    if (status_ != status && (status == UpdateStatus::DOWNLOADING)) {
+      ReportStatus(base::StringPrintf("ui_print ========================"));
+      ReportStatus(base::StringPrintf("ui_print  Staging the files..."));
+      ReportStatus(base::StringPrintf("ui_print ========================"));
       ReportStatus(base::StringPrintf(
-          "ui_print Step %d/2", status == UpdateStatus::DOWNLOADING ? 1 : 2));
-      ReportStatus(base::StringPrintf("progress 0.5 0"));
+          "ui_print Step %d/3", status == UpdateStatus::DOWNLOADING ? 1 : 2));
+      ReportStatus(base::StringPrintf("progress 0.3 0"));
     }
-    if (status_ != status || fabs(progress - progress_) > 0.005) {
-      ReportStatus(base::StringPrintf("set_progress %.lf", progress));
+
+    if (status_ != status && (status == UpdateStatus::VERIFYING || status == UpdateStatus::FINALIZING)) {
+      ReportStatus(base::StringPrintf(
+           "ui_print Step %d/3", status == UpdateStatus::VERIFYING ? 2 : 3));
+      ReportStatus(base::StringPrintf("progress 0.6 0"));
     }
+
+    if (status_ != status && (status == UpdateStatus::FINALIZING)) {
+      ReportStatus(base::StringPrintf("progress 0.9 0"));
+      ReportStatus(base::StringPrintf("ui_print "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print  Thank you for flashing PixelDust ROM "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print ."));
+      ReportStatus(base::StringPrintf("ui_print .  __________.__              .__   "));
+      ReportStatus(base::StringPrintf("ui_print .  \\______   \\__|__  ___ ____ |  |  "));
+      ReportStatus(base::StringPrintf("ui_print .   |     ___/  \\  \\/  /\\/ __\\|  |  "));
+      ReportStatus(base::StringPrintf("ui_print .   |    |   |  |>    <\\  ___/|  |__"));
+      ReportStatus(base::StringPrintf("ui_print .   |____|   |__/__/\\_ \\\\___  >____/"));
+      ReportStatus(base::StringPrintf("ui_print .                     \\/    \\/      "));
+      ReportStatus(base::StringPrintf("ui_print .  ________                  __     "));
+      ReportStatus(base::StringPrintf("ui_print .  \\______ \\  __ __  _______/  |_   "));
+      ReportStatus(base::StringPrintf("ui_print .   |    |  \\|  |  \\/  ___/\\   __\\  "));
+      ReportStatus(base::StringPrintf("ui_print .   |    `   \\  |  /\\___ \\  |  |    "));
+      ReportStatus(base::StringPrintf("ui_print .  /_______  /____//____  > |__|    "));
+      ReportStatus(base::StringPrintf("ui_print .          \\/           \\/          "));
+      ReportStatus(base::StringPrintf("ui_print ."));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print  TIRAMISU BASED ON ANDROID 13.0.0 "));
+      ReportStatus(base::StringPrintf("ui_print ======================================"));
+      ReportStatus(base::StringPrintf("ui_print "));
+    }
+
     progress_ = progress;
     status_ = status;
   }
